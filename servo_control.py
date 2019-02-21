@@ -11,23 +11,21 @@ ms_per_cycle = 1000 / frequency_hertz
 
 
 class ServoControl:
-    wasSet = False
     pwm = None
 
     def initGpio(self):
+        print('Initiating GPIO')
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(pin_number, GPIO.OUT)
         self.pwm = GPIO.PWM(pin_number, frequency_hertz)
         self.pwm.start(0)
+        print('GPIO set')
 
     def set(self, value):
-        if not self.wasSet:
-            print('init gpio')
-            self.initGpio()
-            self.wasSet = True
         print('setting to {}'.format(value))
         position = left_position + (right_position - left_position) * (value + 100) / 200
         self.pwm.start(position * 100 / ms_per_cycle)
+        print('pwm set to {}'.format(value))
 
     def shutdown(self):
         self.pwm.stop()
