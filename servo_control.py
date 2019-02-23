@@ -1,23 +1,30 @@
-# This gives us control of the Raspberry Pi's pins.
-# This is only used for time delays... standard Python stuff.
-
 import RPi.GPIO as GPIO
 
-pin_number = 35
+x_axis_pin = 35
 frequency_hertz = 50
 left_position = 0.40
 right_position = 2.5
 ms_per_cycle = 1000 / frequency_hertz
 
+sensor_1_pin = 7
+
 
 class ServoControl:
     pwm = None
 
+    def sensor1(self):
+        print('Sensor value changed to {}'.format(GPIO.input(4)))
+
     def initGpio(self):
         print('Initiating GPIO')
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(pin_number, GPIO.OUT)
-        self.pwm = GPIO.PWM(pin_number, frequency_hertz)
+
+        GPIO.setup(sensor_1_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(sensor_1_pin, GPIO.BOTH)
+        GPIO.add_event_callback(sensor_1_pin, self.sensor1)
+
+        GPIO.setup(x_axis_pin, GPIO.OUT)
+        self.pwm = GPIO.PWM(x_axis_pin, frequency_hertz)
         self.pwm.start(0)
         print('GPIO set')
 
