@@ -5,6 +5,8 @@ frequency_hertz = 50
 left_position = 0.40
 right_position = 2.5
 ms_per_cycle = 1000 / frequency_hertz
+shift = -1.5
+LOWERING_COEFFICIENT = 0.3
 
 left_limit_pin = 7
 right_limit_pin = 11
@@ -54,7 +56,7 @@ class ServoControl:
         vx = self.vx
         if self.left_limit_reached and vx < 0 or self.right_limit_reached and vx > 0:
             vx = 0
-        position = left_position + (right_position - left_position) * (vx + 100) / 200
+        position = left_position + (right_position - left_position) * (vx * LOWERING_COEFFICIENT + shift + 100) / 200
         self.pwm.start(position * 100 / ms_per_cycle)
         print('pwm set to {}'.format(self.vx))
 
