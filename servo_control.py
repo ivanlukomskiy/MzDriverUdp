@@ -23,8 +23,7 @@ class ServoControl:
             self.right_limit_reached = GPIO.input(right_limit_pin) == 0
         else:
             print('Unexpected pin interruption received {}'.format(value))
-        print('New limits are {left: {}, right: {}}'.format(
-            self.left_limit_reached, self.right_limit_reached))
+        print('New limits are left: {}, right: {}'.format(self.left_limit_reached, self.right_limit_reached))
         self.check_limits()
         self.apply_velocity()
 
