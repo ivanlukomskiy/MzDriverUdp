@@ -15,6 +15,7 @@ sock.setblocking(0)
 sock.bind((UDP_IP, UDP_PORT))
 print("Listening for UDP connections on {}:{}".format(UDP_IP, UDP_PORT))
 
+greatest_timestamp = 0
 
 try:
     while 1:
@@ -22,7 +23,11 @@ try:
         if ready[0]:
             try:
                 data, addr = sock.recvfrom(1024)
-                channel, value = struct.unpack('bf', data)
+                channel, value, timestamp = struct.unpack('bf', data)
+                if timestamp < greatest_timestamp:
+                    print('Stale value received')
+                    continue
+                greatest_timestamp = timestamp
                 print("Received value {} for the channel {}".format(value, channel))
                 SERVO_CONTROL.set(value)
             except:
