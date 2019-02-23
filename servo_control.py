@@ -38,12 +38,12 @@ class ServoControl:
         GPIO.add_event_callback(left_limit_pin, self.sensor_interruption)
         GPIO.add_event_callback(right_limit_pin, self.sensor_interruption)
 
-        self.sensor_interruption(left_limit_pin)
-        self.sensor_interruption(right_limit_pin)
-
         GPIO.setup(x_axis_pin, GPIO.OUT)
         self.pwm = GPIO.PWM(x_axis_pin, frequency_hertz)
         self.pwm.start(0)
+
+        self.sensor_interruption(left_limit_pin)
+        self.sensor_interruption(right_limit_pin)
         print('GPIO set')
 
     def check_limits(self):
