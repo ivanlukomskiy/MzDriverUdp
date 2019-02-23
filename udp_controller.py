@@ -23,7 +23,7 @@ try:
         if ready[0]:
             try:
                 data, addr = sock.recvfrom(1024)
-                channel, value, timestamp = struct.unpack('bfl', data)
+                channel, value, timestamp = struct.unpack('bfq', data)
                 if timestamp < greatest_timestamp:
                     print('Stale value received')
                     continue
