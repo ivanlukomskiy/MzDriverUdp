@@ -14,7 +14,7 @@ class ServoControl:
 
     def sensor1(self, value):
         print("value is {}".format(value))
-        print('Sensor value changed to {}'.format(GPIO.input(4)))
+        print('Sensor value changed to {}'.format(GPIO.input(sensor_1_pin)))
 
     def initGpio(self):
         print('Initiating GPIO')
