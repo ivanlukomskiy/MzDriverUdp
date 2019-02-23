@@ -24,7 +24,6 @@ class ServoControl:
         else:
             print('Unexpected pin interruption received {}'.format(value))
         print('New limits are left: {}, right: {}'.format(self.left_limit_reached, self.right_limit_reached))
-        self.check_limits()
         self.apply_velocity()
 
     def initGpio(self):
@@ -46,18 +45,16 @@ class ServoControl:
         self.sensor_interruption(right_limit_pin)
         print('GPIO set')
 
-    def check_limits(self):
-        if self.left_limit_reached and self.vx < 0 or self.right_limit_reached and self.vx > 0:
-            self.vx = 0
-
     def set(self, value):
         print('setting to {}'.format(value))
         self.vx = value
-        self.check_limits()
         self.apply_velocity()
 
     def apply_velocity(self):
-        position = left_position + (right_position - left_position) * (self.vx + 100) / 200
+        vx = self.vx
+        if self.left_limit_reached and vx < 0 or self.right_limit_reached and vx > 0:
+            vx = 0
+        position = left_position + (right_position - left_position) * (vx + 100) / 200
         self.pwm.start(position * 100 / ms_per_cycle)
         print('pwm set to {}'.format(self.vx))
 
