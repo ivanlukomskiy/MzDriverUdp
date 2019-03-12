@@ -54,7 +54,7 @@ class ServoControl:
 
     def apply_velocity(self):
         vx = self.vx
-        if use_limits and self.left_limit_reached and vx < 0 or self.right_limit_reached and vx > 0:
+        if use_limits and (self.left_limit_reached and vx < 0 or self.right_limit_reached and vx > 0):
             vx = 0
         position = left_position + (right_position - left_position) * (vx * LOWERING_COEFFICIENT + shift + 100) / 200
         value = position * 100 / ms_per_cycle
