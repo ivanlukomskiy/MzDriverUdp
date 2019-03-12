@@ -57,8 +57,9 @@ class ServoControl:
         if self.left_limit_reached and vx < 0 or self.right_limit_reached and vx > 0:
             vx = 0
         position = left_position + (right_position - left_position) * (vx * LOWERING_COEFFICIENT + shift + 100) / 200
-        self.pwm.start(position * 100 / ms_per_cycle)
-        print('pwm set to {}'.format(self.vx))
+        value = position * 100 / ms_per_cycle
+        self.pwm.start(value)
+        print('pwm set to {}, value {}'.format(self.vx, value))
 
     def shutdown(self):
         self.pwm.stop()
