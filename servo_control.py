@@ -6,8 +6,8 @@ left_position = 0.40
 right_position = 2.5
 ms_per_cycle = 1000 / frequency_hertz
 shift = -1.5
-# LOWERING_COEFFICIENT = 0.3
-LOWERING_COEFFICIENT = 0.05
+LOWERING_COEFFICIENT = 0.3
+# LOWERING_COEFFICIENT = 0.05
 
 left_limit_pin = 7
 right_limit_pin = 11
