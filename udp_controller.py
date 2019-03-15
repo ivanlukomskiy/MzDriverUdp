@@ -1,6 +1,7 @@
 import select
 import socket
 import struct
+import traceback
 
 from servo_control import SERVO_CONTROL
 
@@ -43,6 +44,6 @@ try:
                     SERVO_CONTROL.set_y_v(value)
 
             except:
-                print("Failed to handle message")
+                print("Failed to handle message", traceback.format_exc())
 finally:
     SERVO_CONTROL.shutdown()
