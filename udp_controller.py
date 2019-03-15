@@ -41,7 +41,7 @@ try:
                         print('Stale Y value received')
                         continue
                     greatest_timestamp_y = timestamp
-                    SERVO_CONTROL.set_y_v(-value)
+                    SERVO_CONTROL.set_y_v(value)
 
             except:
                 print("Failed to handle message", traceback.format_exc())
