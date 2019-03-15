@@ -79,6 +79,7 @@ class ServoControl:
         print('x pwm set to {}, value {}'.format(self.x_v, value))
 
     def apply_y_velocity(self):
+        y_v = self.y_v
         position = left_position + (right_position - left_position) * (y_v * y_input_multiplier + y_shift + 100) / 200
         value = position * 100 / ms_per_cycle
         self.y_pwm.start(value)
