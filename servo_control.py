@@ -5,7 +5,7 @@ x_shift = -1.5
 x_input_multiplier = 0.3
 
 y_axis_pin = 37
-y_shift = -1.5
+y_shift = -2.5
 y_input_multiplier = 0.3
 
 frequency_hertz = 50
