@@ -35,13 +35,13 @@ try:
                         print('Stale X value received')
                         continue
                     greatest_timestamp_x = timestamp
-                    SERVO_CONTROL.set_x_v(value)
+                    SERVO_CONTROL.set_x_v(-value)
                 elif channel == Y_CHANNEL:
                     if timestamp < greatest_timestamp_y:
                         print('Stale Y value received')
                         continue
                     greatest_timestamp_y = timestamp
-                    SERVO_CONTROL.set_y_v(-value)
+                    SERVO_CONTROL.set_y_v(value)
 
             except:
                 print("Failed to handle message", traceback.format_exc())
