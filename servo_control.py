@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 x_axis_pin = 35
-x_shift = -1.5
+x_shift = -5.5
 x_input_multiplier = 0.3
 
 y_axis_pin = 37
