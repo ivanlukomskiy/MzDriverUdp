@@ -1,0 +1,9 @@
+[Unit]
+Description=Microscope UDP controller
+
+[Service]
+Restart=always
+ExecStart=python ${MICROSCOPE_CONTROLLER_HOME}/udp_controller.py
+
+[Install]
+WantedBy=multi-user.target
