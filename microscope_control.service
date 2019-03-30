@@ -3,7 +3,7 @@ Description=Microscope UDP controller service
 After=network-online.target
 
 [Service]
-ExecStart=python $MICROSCOPE_CONTROLLER_HOME/udp_controller.py
+ExecStart=/usr/bin/python $MICROSCOPE_CONTROLLER_HOME/udp_controller.py
 User=pi
 Restart=always
 RestartSec=15
