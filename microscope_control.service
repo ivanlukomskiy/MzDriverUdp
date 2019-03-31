@@ -3,7 +3,7 @@ Description=Microscope UDP controller service
 After=network-online.target
 
 [Service]
-ExecStart=/usr/bin/python /home/pi/Documents/MzDriverUdp/udp_controller.py
+ExecStart=/bin/bash /home/pi/Documents/MzDriverUdp/run.sh
 User=pi
 Restart=always
 RestartSec=15
