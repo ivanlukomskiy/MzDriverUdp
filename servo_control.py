@@ -48,7 +48,7 @@ class AxisControl:
 
         position = left_position + (right_position - left_position) * (v * self.multiplier + self.shift + 100) / 200
         value = position * 100 / ms_per_cycle
-        self.pwm.start(v)
+        self.pwm.start(value)
         print('{} set to {}, value {}'.format(self.name, self.v, value))
 
     def limit_changed(self, value):
