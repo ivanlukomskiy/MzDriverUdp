@@ -73,7 +73,7 @@ class ServoControl:
         self.x = AxisControl(
             name="x",
             pin=35,
-            shift=-6.5,
+            shift=-7.5,
             multiplier=0.3,
             left_limit_pin=None,
             right_limit_pin=None
